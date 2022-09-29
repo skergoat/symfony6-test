@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MahlerDiscs index{% endblock %}
+
+{% block body %}
+    <h1>MahlerDiscs index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Date_edit</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mahler_disc in mahler_discs %}
+            <tr>
+                <td>{{ mahler_disc.id }}</td>
+                <td>{{ mahler_disc.name }}</td>
+                <td>{{ mahler_disc.dateEdit ? mahler_disc.dateEdit|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_mahler_discs_show', {'id': mahler_disc.id}) }}">show</a>
+                    <a href="{{ path('app_mahler_discs_edit', {'id': mahler_disc.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_mahler_discs_new') }}">Create new</a>
+{% endblock %}
